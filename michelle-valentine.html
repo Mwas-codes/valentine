@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Michelle 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Background photo grid */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      z-index: -2;
+    }
+
+    .background div {
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px) brightness(0.7);
+    }
+
+    .bg1 { background-image: url('photos/pic1.jpg'); }
+    .bg2 { background-image: url('photos/pic2.jpg'); }
+    .bg3 { background-image: url('photos/pic3.jpg'); }
+    .bg4 { background-image: url('photos/pic4.jpg'); }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 120, 150, 0.65);
+      z-index: -1;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      max-width: 380px;
+      margin: auto;
+      margin-top: 15vh;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 8px;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #ddd;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="background">
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <div class="bg3"></div>
+    <div class="bg4"></div>
+  </div>
+  <div class="overlay"></div>
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>Michelle Koks</h1>
+    <p>I wanted this to feel personal… because you are 😌</p>
+
+    <h2>Will you be my Valentine? 💘</h2>
+
+    <button id="yes" onclick="yesClicked()">YES 😍</button>
+    <button id="no" onmouseover="moveNo()">No 🙃</button>
+
+   
+  </div>
+
+  <script>
+    const music = document.getElementById("music");
+
+    document.body.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+
+    const noTexts = ["MICHELLE😅","Wrong answer 🙄","Be serious 😏","NTAKUCHAPAA😂","PLS BE MINE"];
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      noBtn.style.top = Math.random() * 80 + "vh";
+      noBtn.style.left = Math.random() * 80 + "vw";
+      noBtn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div class="card">
+          <h1>AWW you said yes 🥹❤️</h1>
+          <p>
+            Happy Valentine’s, MAIH LOVE 💐<br><br>
+            
+            I can’t wait to make this day unforgettable ✨
+          </p>
+        </div>
+      `;
+    }
+
+    // Hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 400);
+  </script>
+
+</body>
+</html>
